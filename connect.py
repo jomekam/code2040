@@ -13,8 +13,8 @@ def connect():
 	my_json = {'token': TOKEN, 'github': REPO }
 
 	r = requests.post(CHALLENGE_ENDPOINT, data = my_json)
-	
-	print "API Response: " + r.content
+	if(r.status_code == requests.codes.ok):
+		print "API Responsed with: " + r.content
 
 
 
