@@ -26,7 +26,6 @@ def string_from_api():
 	r = requests.post(CHALLENGE_ENDPOINT, data = my_json)
 
 	if(r.status_code == requests.codes.ok):
-		print "Initial Post Result: " + r.content
 		return r.content
 
 def validate_reversal():
@@ -34,8 +33,7 @@ def validate_reversal():
 	my_json = {'token': TOKEN, 'string': reversed_string }	
 	r = requests.post(VALIDATE_REVERSE_ENDPOINT, data = my_json)
 	if(r.status_code == requests.codes.ok):
-		print "Reversed Post Result: " + reversed_string
-		print "Later Post Result: " + r.content
+		print "API says: " + r.content
 
 if __name__ == "__main__":
 	validate_reversal()

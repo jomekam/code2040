@@ -13,7 +13,7 @@ def connect():
 
 	r = requests.post(CHALLENGE_ENDPOINT, data = my_json)
 	if(r.status_code == requests.codes.ok):
-		print "API Responsed with: " + r.content
+		print "API Says: " + r.content
 
 
 if __name__ == "__main__":
