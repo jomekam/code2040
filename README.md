@@ -1,16 +1,16 @@
 # code2040
 API Challenge CODE2040
 
+#AUTHOR: JIDE OMEKAM
 
-Things to do...
+interface_methods:
+	This class is where I abstract methods that can and are used across different classes,
+	by doing so, I am abstracting repetitive post requests and dictionary creation code
+	This make things cleaner, and better, in the event that I need to narrow down bugs
 
-1. Write extensive test cases.
-2. Write fleshed out comments
-3. Try to see what methods i can abstract into their own file, kind of like
-4. placedata(info, info). That way I do have repetitive code. Also getting the dictionaries from the API
-5. Think of some random edge cases
-6. Looks like I dont need to import JSON
-7. Make sure the way I import requests is "clean"
-8. I have my_json twice in different functions.... while that does
-work becayse tget are in two different scopes, it may confuse someone reading my code
-9. Maybe I dont need to save uncessary variables?
+	Also, there is one token, so I don't need to copy and paste it into every file
+	r.status_code was just to ensure that I got back a response
+
+Disclaimer: While it was reasonable to assume that the inputs given were valid from the API from the scope of this challenge, it should be noted that edge cases for null, length 0, bad format, etc. could have been check, but I was told that it was a reasonable assumption to make
+
+See comments in other files for the other respective classes

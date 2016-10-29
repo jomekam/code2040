@@ -1,14 +1,17 @@
+#AUTHOR: JIDE OMEKAM
 import requests
 import json
+from interface_methods import connect, make_dictionary
+
 
 """Step 4: Given a prefix value that is a string, and a second value, an array of string,
 return the array containing only the strings that do not start with that prefix """
 
-TOKEN = '3723a7f63a07b1c07d836f4e4f95037a'
 CHALLENGE_ENDPOINT= 'http://challenge.code2040.org/api/prefix'
 VALIDATE_PREFIX_ENDPOINT = 'http://challenge.code2040.org/api/prefix/validate'
 
-#Return an array
+#Walks through a given list of words, and checks if one is
+#a substring of another
 def get_non_prefix(dictionary):
 	prefix = dictionary['prefix']
 	string_list = dictionary['array']
@@ -20,21 +23,12 @@ def get_non_prefix(dictionary):
 	
 
 def dictionary_from_api():
-	my_json = {'token': TOKEN}
-	r = requests.post(CHALLENGE_ENDPOINT, data = my_json)
+	return json.loads(connect(my_json = make_dictionary(), endpoint = CHALLENGE_ENDPOINT))
 
-	if(r.status_code == requests.codes.ok):
-		jsonResponse = json.loads(r.content)
-		return jsonResponse
 
 def validate_prefix():
-	
-	non_prefix_list = get_non_prefix(dictionary_from_api())
- 	my_json = {'token': TOKEN, 'array': non_prefix_list}
-
-	r = requests.post(VALIDATE_PREFIX_ENDPOINT, json = my_json)
-	if(r.status_code == requests.codes.ok):
-		print "API says: " + r.content
+	connect(my_json = make_dictionary('array', get_non_prefix(dictionary_from_api())),
+		endpoint = VALIDATE_PREFIX_ENDPOINT) 
 
 if __name__ == "__main__":
 	validate_prefix()

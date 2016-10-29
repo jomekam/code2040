@@ -1,39 +1,30 @@
-import requests
+#AUTHOR: JIDE OMEKAM
+
+from interface_methods import connect, make_dictionary
+
 
 """Step 2: Reverse a string. While I simply put the characters onto a stack,
 this is a more efficient way to not allocate space and I still only walk through
 the string once"""
 
-TOKEN = '3723a7f63a07b1c07d836f4e4f95037a'
 CHALLENGE_ENDPOINT= 'http://challenge.code2040.org/api/reverse'
 VALIDATE_REVERSE_ENDPOINT = 'http://challenge.code2040.org/api/reverse/validate'
 
 
 def reverse(string):
-	reversed_string = ""
-	string_length = len(string)
-	if(string_length == 0 or string is None):
-		return reversed_string
-	if(string_length == 1):
-		return string
-
 	#Reverse it using list splicing, python
 	return string[::-1]
 
+#See interface_methods.py for clarity
 def string_from_api():
-	my_json = {'token': TOKEN}
+	return connect(my_json = make_dictionary(), endpoint = CHALLENGE_ENDPOINT)
 
-	r = requests.post(CHALLENGE_ENDPOINT, data = my_json)
-
-	if(r.status_code == requests.codes.ok):
-		return r.content
-
+	
 def validate_reversal():
-	reversed_string = reverse(string_from_api())
-	my_json = {'token': TOKEN, 'string': reversed_string }	
-	r = requests.post(VALIDATE_REVERSE_ENDPOINT, data = my_json)
-	if(r.status_code == requests.codes.ok):
-		print "API says: " + r.content
+	connect(my_json = make_dictionary('string', reverse(string_from_api())), 
+		endpoint = VALIDATE_REVERSE_ENDPOINT)
+
+
 
 if __name__ == "__main__":
 	validate_reversal()
