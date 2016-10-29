@@ -9,6 +9,7 @@ CHALLENGE_ENDPOINT= 'http://challenge.code2040.org/api/haystack'
 VALIDATE_HAYSTACK_ENDPOINT = 'http://challenge.code2040.org/api/haystack/validate'
 
 
+
 def get_needle(dictionary):
 	needle = dictionary['needle']
 	haystack = dictionary['haystack']
